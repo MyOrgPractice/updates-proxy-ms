@@ -6,7 +6,7 @@ const seperator = "/";
 const API_Host = "https://gateway.api.cloud.wso2.com/t/updateslive";
 const token = "c929f4c1-0334-309a-9e59-13290c4883e4";
 
-service on new http:Listener(9090) {
+service / on new http:Listener(9090) {
     resource function get getUpdateSummary() returns json|error? {
         http:Client updates = check new (API_Host);
 
