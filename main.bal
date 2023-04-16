@@ -4,17 +4,17 @@ import ballerina/http;
 
 const seperator = "/";
 const API_Host = "https://gateway.api.cloud.wso2.com/t/updateslive";
-const token = "f7f563cf-6d29-3b65-bd51-dd4d686f4cf0";
+const token = "c929f4c1-0334-309a-9e59-13290c4883e4";
 
-service /portal on new http:Listener(9090) {
-    resource function get getUpdateSummary() returns error? {
+service on new http:Listener(9090) {
+    resource function get getUpdateSummary() returns json|error? {
         http:Client updates = check new (API_Host);
 
         json search = check updates->get("/updates/1.0.0/recommended-update-levels", {
             "Authorization":  "Bearer " + token
         });
 
-        io:println(search);
+        return search;
     }
 
     resource function get getUpdatesDetails(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns error? {
