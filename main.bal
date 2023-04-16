@@ -40,17 +40,22 @@ service /updates on new http:Listener(9090) {
         return search;
     }
 
-    resource function get downloadPDF(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns json|error? {
-        http:Client updates = check new (API_Host);
+    // resource function get downloadPDF(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns byte[]|error? {
+        // http:Client updates = check new (API_Host);
 
-        string base = "/pdfmanager/1.0.0/pdf";
+        // string base = "/pdfmanager/1.0.0/pdf";
 
-        json search = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
-            "Authorization": "Bearer " + token
-        });
+        // json search = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
+        //     "Authorization": "Bearer " + token
+        // });
 
-        return search;
-    }
+        // return search;
+        
+        // http:Response pdf = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel));
+
+        // return pdf.getBinaryPayload();
+
+    // }
 
     resource function get getUpdateLevelMetadata() returns json|error? {
         http:Client updates = check new (API_Host);
