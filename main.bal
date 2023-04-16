@@ -3,7 +3,7 @@ import ballerina/http;
 
 const seperator = "/";
 const API_Host = "https://gateway.api.cloud.wso2.com/t/updateslive";
-const token = "b0b8e8eb-49bc-373d-be39-38e611117489";
+const token = "68e6bf5b-8f30-3330-9b40-2d6246ecf3d2";
 
 service /updates on new http:Listener(9090) {
     resource function get getUpdateSummary() returns json|error? {
