@@ -3,17 +3,17 @@ import ballerina/http;
 
 const seperator = "/";
 const API_Host = "https://gateway.api.cloud.wso2.com/t/updateslive";
-const token = "2db7731c-40c7-3be4-841d-e5162598c369";
+const token = "723bc829-67d2-3876-bd3b-2e9c8cdecbd3";
 
 service /updates on new http:Listener(9090) {
     resource function get getUpdateSummary() returns json|error? {
         http:Client updates = check new (API_Host);
 
-        json search = check updates->get("/updates/1.0.0/recommended-update-levels", {
+        json results = check updates->get("/updates/1.0.0/recommended-update-levels", {
             "Authorization":  "Bearer " + token
         });
 
-        return search;
+        return results;
     }
 
     resource function get getUpdatesDetails(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns json|error? {
@@ -21,11 +21,11 @@ service /updates on new http:Listener(9090) {
 
         string base = "/updates/1.0.0";
 
-        json search = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
+        json results = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
             "Authorization": "Bearer " + token
         });
 
-        return search;
+        return results;
     }
 
     resource function get getAvailableUpdates(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns json|error? {
@@ -33,11 +33,11 @@ service /updates on new http:Listener(9090) {
 
         string base = "/updates/1.0.0";
 
-        json search = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
+        json results = check updates->get(searchUrl(base, product, productVersion, channel, startUpdateLevel, endUpdateLevel), {
             "Authorization": "Bearer " + token
         });
 
-        return search;
+        return results;
     }
 
     // resource function get downloadPDF(string product, string productVersion, string channel, string startUpdateLevel, string endUpdateLevel) returns byte[]|error? {
@@ -60,11 +60,11 @@ service /updates on new http:Listener(9090) {
     resource function get getUpdateLevelMetadata() returns json|error? {
         http:Client updates = check new (API_Host);
 
-        json search = check updates->get("/updates/1.0.0/product-update-levels", {
+        json results = check updates->get("/updates/1.0.0/product-update-levels", {
             "Authorization": "Bearer " + token
         });
 
-        return search;
+        return results;
     }
 }
 
